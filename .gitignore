@@ -1,0 +1,12 @@
+# Plugins de vim: los reinstala vim-plug desde .vimrc
+plugged/
+.vim/plugged/
+autoload/plug.vim
+
+# Respaldos generados por install.sh
+.config-desktop-backup/
+
+# Basura del sistema
+*.swp
+*~
+.DS_Store

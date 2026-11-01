@@ -1,0 +1,14 @@
+"eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+],
+"eslint.options" : {
+    "env": {
+        "browser": true,
+        "node": true
+    }
+},
+
+"eslint.autoFixOnSave": true 

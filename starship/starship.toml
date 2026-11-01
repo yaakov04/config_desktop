@@ -1,0 +1,41 @@
+# ~/.config/starship.toml
+
+# Use custom format
+format = """
+$username[in](bold green) $directory
+ $git_status$git_commit$git_branch
+ [└─>](bold green) """
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+[username]
+style_user = "white bold"
+style_root = "black bold"
+format = " [$user]($style) "
+disabled = false
+show_always = true
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = "🔖 "
+
+[git_status]
+conflicted = "🏳"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷‍"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](green)'
+renamed = "👅"
+deleted = "🗑"
+
+[status]
+disabled = false
+
+command_timeout = 1000
