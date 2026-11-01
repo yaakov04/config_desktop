@@ -8,6 +8,7 @@ Mis configuraciones de escritorio en Linux (Ubuntu / GNOME).
 | ------------- | ------------------------------------------------------- | -------------------------------- |
 | `starship/`   | Prompt de [Starship](https://starship.rs)                | `~/.config/starship.toml`        |
 | `vim/`        | `.vimrc`, ajustes de coc, tema monokai y diccionario     | `~/.vimrc`, `~/.vim/`            |
+| `bash/`       | Añadidos propios al `.bashrc` (nvm, PATH, alias)         | `source` desde `~/.bashrc`       |
 | `wallpapers/` | Fondos de pantalla                                       | `~/.local/share/backgrounds/`    |
 
 ## Instalación
@@ -23,15 +24,23 @@ cualquier cambio que hagas luego en `~/.vimrc` queda reflejado en el repo y solo
 hay que hacer `git commit`. Si ya existía un archivo en el destino, se respalda
 en `~/.config-desktop-backup/<fecha>/` antes de reemplazarlo.
 
+El `.bashrc` es la excepción: no se enlaza, porque las primeras ~117 líneas son
+el stock de la distro. En su lugar `install.sh` le añade al final un `source` de
+`bash/bashrc.custom`, que es donde viven los añadidos propios (nvm, PATH, el
+alias `npm` → `pnpm` y el init de starship).
+
 ### Después de instalar
 
-- **Starship** — asegúrate de tener la línea en tu `~/.bashrc`:
+- **Bash** — recarga la shell:
 
   ```bash
-  eval "$(starship init bash)"
+  source ~/.bashrc
   ```
 
-  Si no tienes starship instalado:
+  Si instalas sobre una máquina que ya tenía estas líneas sueltas en el
+  `.bashrc`, bórralas a mano para no cargarlas dos veces.
+
+- **Starship** — si no lo tienes instalado:
 
   ```bash
   curl -sS https://starship.rs/install.sh | sh

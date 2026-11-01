@@ -52,6 +52,25 @@ else
     info "vim-plug ya instalado"
 fi
 
+# --- bash -------------------------------------------------------------------
+# No se enlaza el .bashrc entero (es el stock de la distro): se le añade un
+# source al final, una sola vez.
+BASHRC="$HOME/.bashrc"
+
+if [ -f "$BASHRC" ] && grep -qF 'bash/bashrc.custom' "$BASHRC"; then
+    info "~/.bashrc ya carga bashrc.custom"
+else
+    mkdir -p "$BACKUP"
+    cp "$BASHRC" "$BACKUP/.bashrc" 2>/dev/null || true
+    {
+        echo
+        echo "# config_desktop"
+        echo "[ -f \"$REPO/bash/bashrc.custom\" ] && . \"$REPO/bash/bashrc.custom\""
+    } >> "$BASHRC"
+    info "añadido source de bashrc.custom a ~/.bashrc"
+    warn "revisa que no te queden duplicados de nvm/starship/alias en ~/.bashrc"
+fi
+
 # --- wallpapers -------------------------------------------------------------
 mkdir -p "$HOME/.local/share/backgrounds"
 for wp in "$REPO"/wallpapers/*; do
@@ -62,7 +81,8 @@ done
 echo
 info "listo."
 [ -d "$BACKUP" ] && warn "archivos previos respaldados en: $BACKUP"
-echo "    starship: añade a ~/.bashrc  ->  eval \"\$(starship init bash)\""
+echo "    bash:     recarga con  ->  source ~/.bashrc"
+echo "    starship: si no lo tienes  ->  curl -sS https://starship.rs/install.sh | sh"
 echo "    vim:      abre vim y ejecuta :PlugInstall"
 echo "    fondo:    gsettings set org.gnome.desktop.background picture-uri \\"
 echo "                  \"file://\$HOME/.local/share/backgrounds/wallpaper-01.jpg\""
