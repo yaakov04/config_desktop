@@ -1,14 +1,38 @@
-"eslint.filetypes": [
+{
+  "eslint.filetypes": [
     "javascript",
     "typescript",
     "typescriptreact",
     "javascriptreact"
-],
-"eslint.options" : {
+  ],
+  "eslint.options": {
     "env": {
-        "browser": true,
-        "node": true
+      "browser": true,
+      "node": true
     }
-},
+  },
+  "eslint.autoFixOnSave": true,
 
-"eslint.autoFixOnSave": true 
+  "rust-analyzer": {
+    "cargo": {
+      "allFeatures": true
+    },
+    "checkOnSave": {
+      "command": "clippy"
+    },
+    "procMacro": {
+      "enable": true
+    }
+  },
+
+  "suggest.noselect": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  "eslint.migration.2_x": "off"
+}
+
